@@ -5,9 +5,11 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo_width": "150",
-    "logo_height": "30",
-    "logo_text": "有限会社 南西流通ライン"
+    "logo": "/images/logo_hr_b.png",
+    "logo_darkmode": "/images/logo_hr_w.png",
+    "logo_width": "200",
+    "logo_height": "25",
+    "logo_text": "ロゴ：有限会社 南西流通ライン"
   },
 
   "settings": {
@@ -22,7 +24,7 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "copyright": "&copy;Nansei-Ryutsu-Line"
   },
 
   "navigation_button": {

@@ -1,7 +1,7 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify } from "@/libs/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import type { Button, Feature } from "@/types";
@@ -22,52 +22,52 @@ const homepage = await getEntry("homepage", "-index");
 const testimonial = await getEntry("sections", "testimonial");
 const call_to_action = await getEntry("sections", "call-to-action");
 const { banner, features }: Homepage = homepage.data;
+//microcms読み込み
+const response = await getNews({ fields: ["id", "title"] });
+import { getNews } from "../libs/microcms";
 ---
 
 <Base>
   <!-- Banner -->
   <section class="section pt-14">
     <div class="container">
-      <div class="row justify-center">
-        <div class="lg:col-7 md:col-9 mb-8 text-center">
+      <div class="row justify-center relative">
+        <div class="text-center absolute top-1/4 translate-y-1/2 z-10">
           <h1
             set:html={markdownify(banner.title)}
             class="mb-4 text-h3 lg:text-h1"
           />
           <p set:html={markdownify(banner.content)} class="mb-8" />
-          {
-            banner.button.enable && (
-              <a
-                class="btn btn-primary"
-                href={banner.button.link}
-                target={
-                  banner.button.link.startsWith("http") ? "_blank" : "_self"
-                }
-                rel="noopener"
-              >
-                {banner.button.label}
-              </a>
-            )
-          }
         </div>
-        {
+        <div class="col-12">
+          <img src="https://picsum.photos/1920/609?random=1" alt="" width="1920" height="609">
+        </div>
+        <!-- {
           banner.image && (
             <div class="col-12">
               <ImageMod
                 src={banner.image}
                 height={380}
-                width={1200}
-                alt="banner"
+                width={1920}
+                alt="有限会社 南西流通ライン"
                 format="webp"
               />
             </div>
           )
-        }
+        } -->
       </div>
     </div>
   </section>
   <!-- /Banner -->
-
+    		<ul>
+			{
+				response.contents.map((blog: any) => (
+				  <li>
+					<a href={blog.id}>{blog.title}</a>
+				  </li>
+				))
+			  }
+		</ul>
   <!-- Features -->
   {
     features.map((feature, index: number) => (

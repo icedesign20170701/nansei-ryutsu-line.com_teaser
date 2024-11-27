@@ -1,4 +1,4 @@
-import { plainify, titleify } from "@/lib/utils/textConverter";
+import { plainify, titleify } from "@/libs/utils/textConverter";
 import React from "react";
 
 export interface ISearchItem {

@@ -3,8 +3,8 @@ import BlogCard from "@/components/BlogCard.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import Social from "@/components/Social.astro";
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { slugify } from "@/lib/utils/textConverter";
+import { getSinglePage } from "@/libs/contentParser.astro";
+import { slugify } from "@/libs/utils/textConverter";
 
 // get all static paths for authors
 export async function getStaticPaths() {

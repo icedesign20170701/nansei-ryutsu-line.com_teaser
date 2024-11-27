@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/libs/contentParser.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+
+import type { GetStaticPaths } from "astro";
+import { getNewsDetail } from "@/libs/microcms";
+import Newsid from "@/content/pages/[newsid].astro";
+import BlogCard from "@/components/BlogCard.astro";
+import { getNews } from "@/libs/microcms";
+export const getStaticPaths = (async () => {
+  // 非同期処理を行うため、関数をasyncにする
+  const response = await getNews({ fields: ["id"] });
+
+  // マップ内でオブジェクトを返すため、returnを追加
+  return response.contents.map((news: any) => {
+    return {
+      params: {
+        newsId: news.id,
+      }
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { newsId } = Astro.params;
+const news = await getNewsDetail(newsId as string);
+---
+
+<Base title="Blog Detail">
+    <main>
+        <h1>{news.title}</h1>
+        <p>公開日時:{new Date(news.publishedAt).toLocaleDateString()}</p>
+        <div set:html={news.content} />
+    </main>
+</Base>
+
+<style>
+    main {
+        margin: auto;
+        padding: 1em;
+        max-width: 60ch;
+    }
+    p {
+        font-size: 14px;
+        color: gray;
+    }
+</style>

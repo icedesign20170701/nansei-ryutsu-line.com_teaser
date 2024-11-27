@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "【公式】有限会社 南西流通ライン"
-  content: "鹿児島県にある運送会社です。"
+  content: "鹿児島県を拠点に日本全国どこへでも配送可能です。"
   image: "/images/banner.png"
   button:
     enable: true

@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getNewsDetail, getNews } from "../../libs/microcms";
+
+export async function getStaticPaths() {
+  const response = await getNews({ fields: ["id"] });
+  return response.contents.map((news: any) => ({
+    params: {
+      newsId: news.id,
+    },
+  }));
+}
+
+const { newsId } = Astro.params;
+const news = await getNewsDetail(newsId as string);
+---
+
+<Layout title="News Detail">
+  <main>
+    <h1>{news.title}</h1>
+    <p>公開日時:{new Date(news.publishedAt).toLocaleString()}</p>
+    <div set:html={news.content} />
+  </main>
+
+  <style>
+    main {
+      margin: auto;
+      padding: 1em;
+      max-width: 60ch;
+    }
+
+    p {
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</Layout>

@@ -1,7 +1,7 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify } from "@/libs/utils/textConverter";
 import { getEntry } from "astro:content";
 
 const about = await getEntry("about", "-index");
